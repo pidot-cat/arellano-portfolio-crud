@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+
+@source '../views';
+@source '../js';
+
+/* Original portfolio design, kept as-is from the PHP version.
+   It is placed in the "base" layer so its global reset (* { margin:0; padding:0 })
+   no longer overrides Tailwind classes on the Gallery Manager pages. */
+@import './portfolio.css' layer(base);
+
+/* Keep the portfolio's own .container (Tailwind also has a "container" class) */
+.container {
+    max-width: var(--container-width);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Gallery card overlay (moved from the old index.php <style> block) */
+.gallery-item .gallery-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(10,10,26,0.95));
+    padding: 1.5rem 1rem 1rem;
+    transform: translateY(100%);
+    transition: var(--transition-normal);
+    z-index: 2;
+}
+.gallery-item:hover .gallery-info { transform: translateY(0); }
+.gallery-info h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .25rem; }
+.gallery-info p { font-size: .8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gallery-info .date-badge { font-size: .7rem; color: var(--accent-secondary); margin-top: .3rem; }
+.gallery-empty { text-align: center; color: var(--text-muted); padding: 3rem; border: 2px dashed var(--border-color); border-radius: var(--border-radius-md); width: 100%; }
+.gallery-empty i { font-size: 3rem; margin-bottom: 1rem; color: var(--accent-primary); }
